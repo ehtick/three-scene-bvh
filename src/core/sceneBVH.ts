@@ -1,6 +1,6 @@
-import { BVH, CoordinateSystem, HybridBuilder, WebGLCoordinateSystem, BVHNode, FloatArray } from 'bvh.js/src';
+import { BVH, CoordinateSystem, HybridBuilder, WebGLCoordinateSystem, BVHNode, FloatArray } from 'bvh.js';
 import { Camera, Intersection, Matrix4, Object3D, Raycaster } from 'three';
-import { ascSortIntersection, getBox, RenderableObject } from './utils';
+import { getBox, RenderableObject } from './utils';
 
 type NodeData = {};
 type LeafData = Object3D;
@@ -75,26 +75,26 @@ export class SceneBVH {
   }
 
   public raycast(raycaster: Raycaster, result: Intersection[]): void {
-    const ray = raycaster.ray;
+    // const ray = raycaster.ray;
 
-    _origin[0] = ray.origin.x;
-    _origin[1] = ray.origin.y;
-    _origin[2] = ray.origin.z;
+    // _origin[0] = ray.origin.x;
+    // _origin[1] = ray.origin.y;
+    // _origin[2] = ray.origin.z;
 
-    _dir[0] = ray.direction.x;
-    _dir[1] = ray.direction.y;
-    _dir[2] = ray.direction.z;
+    // _dir[0] = ray.direction.x;
+    // _dir[1] = ray.direction.y;
+    // _dir[2] = ray.direction.z;
 
-    this.bvh.intersectRay(_dir, _origin, raycaster.near, raycaster.far, _target);
+    // this.bvh.rayIntersections(_dir, _origin, null, raycaster.near, raycaster.far);
 
-    for (let i = 0, l = _target.length; i < l; i++) {
-      const object = _target[i];
-      if (!object.visible) continue;
+    // for (let i = 0, l = _target.length; i < l; i++) {
+    //   const object = _target[i];
+    //   if (!object.visible) continue;
 
-      object.raycast(raycaster, result); // avoid using 'object.raycast()' we can skip bSphere validation
-    }
+    //   object.raycast(raycaster, result); // avoid using 'object.raycast()' we can skip bSphere validation
+    // }
 
-    result.sort(ascSortIntersection);
+    // result.sort(ascSortIntersection);
 
     _target.length = 0;
   }

@@ -1,4 +1,4 @@
-import { FloatArray } from "bvh.js/src";
+import { FloatArray } from "bvh.js";
 import { Box3, Intersection, Line, Mesh, Points, Sprite } from "three";
 
 export type RenderableObject = Mesh | Line | Points | Sprite;
